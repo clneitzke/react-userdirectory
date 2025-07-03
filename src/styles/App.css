@@ -41,7 +41,6 @@ h1 {
     width: 100%;
     max-width: 350px;
     padding: 10px 10px 10px 10px;
-    /* space for icon */
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 1rem;
@@ -98,14 +97,14 @@ h1 {
     }
 }
 
-.loading-message {
+.alert-message {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 50px;
     font-size: 1.3rem;
-    background: #f0f8ff;
-    border: 2px solid #b3d8fd;
+    background: #fffef0;
+    border: 2px solid #eefdb3;
     border-radius: 12px;
     margin: 32px auto;
     width: 450px;

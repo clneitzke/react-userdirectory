@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import UserCard from './components/UserCard/UserCard';
 import UserPopup from './components/UserPopup/UserPopup';
+import Spinner from './components/Spinner/Spinner';
 
 import './styles/App.css';
 
@@ -21,7 +22,7 @@ const App: React.FC = () => {
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                // Simulate network delay to show loading state
+                // Simulate network delay to show Spinner
                 await delay(500);
 
                 const response = await fetch('https://jsonplaceholder.typicode.com/users');
@@ -84,19 +85,19 @@ const App: React.FC = () => {
                 />
             </div>
             {loading && (
-                <p className="loading-message" aria-live="polite">
-                    Loading...
-                </p>
+                <Spinner />
             )}
             {error && (
                 <p className="error-message" aria-live="polite">
                     Error: {error}
                 </p>
             )}
+            {filteredUsers.length === 0 && !loading && !error && (
+                <p className="alert-message" aria-live="polite">
+                    No users found.
+                </p>
+            )}
             <div className="user-list">
-                {filteredUsers.length === 0 && !loading && !error && (
-                    <p>No users found.</p>
-                )}
                 {filteredUsers.map(user => (
                     <div
                         key={user.id}

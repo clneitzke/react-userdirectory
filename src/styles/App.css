@@ -97,3 +97,31 @@ h1 {
         max-width: 100%;
     }
 }
+
+.loading-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50px;
+    font-size: 1.3rem;
+    background: #f0f8ff;
+    border: 2px solid #b3d8fd;
+    border-radius: 12px;
+    margin: 32px auto;
+    width: 450px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.error-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50px;
+    font-size: 1.3rem;
+    background: #fff2f0;
+    border: 2px solid #fdb8b3;
+    border-radius: 12px;
+    margin: 32px auto;
+    width: 450px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}

@@ -3,8 +3,6 @@ import UserCard from './components/UserCard/UserCard';
 import UserPopup from './components/UserPopup/UserPopup';
 
 import './styles/App.css';
-import './components/UserCard/UserCard.css';
-import './components/UserPopup/UserPopup.css';
 
 import { User } from './types/User';
 
@@ -15,16 +13,26 @@ const App: React.FC = () => {
     const [error, setError] = useState<string | null>(null);
     const [selectedUser, setSelectedUser] = useState<User | null>(null);
 
+    const delay = async (ms: number | undefined) => {
+        return new Promise((resolve) =>
+            setTimeout(resolve, ms));
+    };
+
     useEffect(() => {
         const fetchUsers = async () => {
             try {
+                // Simulate network delay to show loading state
+                await delay(500);
+
                 const response = await fetch('https://jsonplaceholder.typicode.com/users');
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
                 const data: User[] = await response.json();
                 setUsers(data);
+                setError(null);
             } catch (error) {
+                setUsers([]);
                 setError(error instanceof Error ? error.message : 'An error occurred');
             } finally {
                 setLoading(false);
@@ -33,18 +41,6 @@ const App: React.FC = () => {
 
         fetchUsers();
     }, []);
-
-    // Prevent background scroll when popup is open
-    useEffect(() => {
-        if (selectedUser) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = '';
-        }
-        return () => {
-            document.body.style.overflow = '';
-        };
-    }, [selectedUser]);
 
     const filteredUsers = users.filter(user => {
         const term = searchTerm.toLowerCase();
@@ -87,8 +83,16 @@ const App: React.FC = () => {
                     aria-label="Search users"
                 />
             </div>
-            {loading && <p aria-live="polite">Loading...</p>}
-            {error && <p aria-live="assertive">Error: {error}</p>}
+            {loading && (
+                <p className="loading-message" aria-live="polite">
+                    Loading...
+                </p>
+            )}
+            {error && (
+                <p className="error-message" aria-live="polite">
+                    Error: {error}
+                </p>
+            )}
             <div className="user-list">
                 {filteredUsers.length === 0 && !loading && !error && (
                     <p>No users found.</p>

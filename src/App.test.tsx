@@ -99,7 +99,8 @@ describe("App", () => {
         await waitFor(() => expect(screen.getByText("Alice Johnson")).toBeInTheDocument());
         fireEvent.click(screen.getByText("Alice Johnson"));
 
-        (() => {
+        // Await for popup to appear
+        await (() => {
             expect(screen.getByText(/Username:/i)).toBeInTheDocument();
             expect(screen.getByText(/alicej/i)).toBeInTheDocument();
             expect(screen.getByText(/alice@example.com/i)).toBeInTheDocument();

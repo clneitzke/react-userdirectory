@@ -55,11 +55,11 @@ To get a local copy up and running, follow these steps:
 
 1. Clone the repository:
    ```
-   git clone https://github.com/clneitzke/user-directory-app.git
+   git clone https://github.com/clneitzke/react-userdirectory.git
    ```
 2. Navigate to the project directory:
    ```
-   cd user-directory-app
+   cd react-userdirectory
    ```
 3. Install the dependencies:
    ```
@@ -67,8 +67,9 @@ To get a local copy up and running, follow these steps:
    ```
 ### Testing
 
+```
 npm test
-
+```
 ### Running the Application
 
 To run the application in development mode, use the following command:
